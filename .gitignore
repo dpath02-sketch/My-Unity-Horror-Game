@@ -104,3 +104,6 @@ InitTestScene*.unity*
 
 # Auto-generated cache in Assets folder
 /[Aa]ssets/[Ss]ceneDependencyCache*
+
+#IDK but apparently these shouldn't be made public no harm in gitignore-ing it
+*.env
