@@ -1,9 +1,11 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class MainMenuScript : MonoBehaviour
 {
+    public string StartScene = "SampleScene";
     // Start is called before the first frame update
     void Start()
     {
@@ -14,5 +16,10 @@ public class MainMenuScript : MonoBehaviour
     void Update()
     {
         
+    }
+
+    public void NewGame()
+    {
+        SceneManager.LoadScene("SampleScene");
     }
 }

@@ -7,7 +7,7 @@ public class player_script : MonoBehaviour
 {
     public Rigidbody who;
     public Camera cam;
-    public float camera_sensitivity = 15;
+    public float camera_sensitivity = 5.3F;
     private float cam_x = 0;
     // Start is called before the first frame update
     void Start()
@@ -45,6 +45,6 @@ public class player_script : MonoBehaviour
     }
     bool IsGrounded()
     {
-        return Physics.Raycast(transform.position, new Vector3(0, -1, 0), 1F);
+        return Physics.Raycast(transform.position, new Vector3(0, -1, 0), 1.1F);
     }
 }

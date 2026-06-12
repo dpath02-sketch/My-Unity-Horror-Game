@@ -329,7 +329,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   who: {fileID: 211743731}
   cam: {fileID: 963194227}
-  camera_sensitivity: 15
+  camera_sensitivity: 5.3
 --- !u!54 &211743731
 Rigidbody:
   m_ObjectHideFlags: 0
