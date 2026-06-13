@@ -4,11 +4,13 @@ using System.Collections.Generic;
 using System.Runtime.CompilerServices;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class enemy1 : MonoBehaviour
 {
     private int rotations = 0;
     private float wait = 2;
+    public string DeathScene = "MainMenu";
     // Start is called before the first frame update
     void Start()
     {
@@ -44,7 +46,7 @@ public class enemy1 : MonoBehaviour
         {
             //TODO death. therefor main menu, death screen, etc
             //TODO also actualy model. with the idea of ramming try a 4 legged creature with eyes on the front
-            Debug.Log("Dead");
+            SceneManager.LoadScene(DeathScene);
         }
         else if (other.gameObject.tag == "is_light")
         {

@@ -9,7 +9,7 @@ public class MainMenuScript : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+        Cursor.lockState = CursorLockMode.None;
     }
 
     // Update is called once per frame
@@ -21,5 +21,10 @@ public class MainMenuScript : MonoBehaviour
     public void NewGame()
     {
         SceneManager.LoadScene("SampleScene");
+    }
+
+    public void QuitGame()
+    {
+        Application.Quit();
     }
 }
