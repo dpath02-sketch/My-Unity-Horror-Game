@@ -3,7 +3,10 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags: []
+  tags:
+  - is_player
+  - is_room
+  - is_light
   layers:
   - Default
   - TransparentFX

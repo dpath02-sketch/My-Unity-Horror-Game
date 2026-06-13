@@ -46,5 +46,9 @@ public class enemy1 : MonoBehaviour
             //TODO also actualy model. with the idea of ramming try a 4 legged creature with eyes on the front
             Debug.Log("Dead");
         }
+        else if (other.gameObject.tag == "is_light")
+        {
+            Destroy(other.gameObject);
+        }
     }
 }
