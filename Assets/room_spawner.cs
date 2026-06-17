@@ -39,7 +39,7 @@ public class room_spawner : MonoBehaviour
         Instantiate(room, new Vector3(0, 0, 0), transform.rotation);
         room_number += 1;
         // Spawn Enemy1 6 10
-        if (room_number >= 6 && Random.Range(0, 1) == 0)
+        if (room_number >= 6 && Random.Range(0, 10) == 0)
         {
             if (transform.eulerAngles.y == 180)
             {
