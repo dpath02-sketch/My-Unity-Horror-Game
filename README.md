@@ -7,4 +7,5 @@ Development Progress:<br>
     * Movement<br>
     * Room generation<br>
     * Enemy sphere!<br>
-	* Menu
+	* Menu<br>
+<img width="480" alt="main image" src="https://github.com/user-attachments/assets/13e6880b-6db9-4f0e-a54a-f7dc335aaccd" />
