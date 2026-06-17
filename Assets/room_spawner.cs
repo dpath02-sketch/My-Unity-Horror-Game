@@ -39,23 +39,23 @@ public class room_spawner : MonoBehaviour
         Instantiate(room, new Vector3(0, 0, 0), transform.rotation);
         room_number += 1;
         // Spawn Enemy1 6 10
-        if (room_number >= 6 && Random.Range(0, 10) == 0)
+        if (room_number >= 6 && Random.Range(0, 1) == 0)
         {
             if (transform.eulerAngles.y == 180)
             {
-                Instantiate(enemies[0], new Vector3(7.2F, 0, -7.2F), Quaternion.Euler(new Vector3(0, 180, 0)));
+                Instantiate(enemies[0], new Vector3(7.2F, 1, -7.2F), Quaternion.Euler(new Vector3(0, 180, 0)));
             }
             if (transform.eulerAngles.y == 270)
             {
-                Instantiate(enemies[0], new Vector3(-7.2F, 0, -7.2F), Quaternion.Euler(new Vector3(0, 270, 0)));
+                Instantiate(enemies[0], new Vector3(-7.2F, 1, -7.2F), Quaternion.Euler(new Vector3(0, 270, 0)));
             }
             if (transform.eulerAngles.y == 0)
             {
-                Instantiate(enemies[0], new Vector3(-7.2F, 0, 7.2F), Quaternion.Euler(new Vector3(0, 0, 0)));
+                Instantiate(enemies[0], new Vector3(-7.2F, 1, 7.2F), Quaternion.Euler(new Vector3(0, 0, 0)));
             }
             if (transform.eulerAngles.y == 90)
             {
-                Instantiate(enemies[0], new Vector3(7.2F, 0, 7.2F), Quaternion.Euler(new Vector3(0, 90, 0)));
+                Instantiate(enemies[0], new Vector3(7.2F, 1, 7.2F), Quaternion.Euler(new Vector3(0, 90, 0)));
             }
         }
         transform.Rotate(new Vector3(0, 0, 90));

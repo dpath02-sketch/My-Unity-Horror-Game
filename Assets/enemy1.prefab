@@ -118,3 +118,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2a3636fea1407a048a48f3d7117c33b3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  wait: 2
+  DeathScene: MainMenu
