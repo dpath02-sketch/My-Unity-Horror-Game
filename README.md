@@ -4,8 +4,8 @@ My first Unity game. It takes heavy inspiration from Roblox: Doors.<br>
 **https://dpath02.itch.io/exit-not-found**<br>
 To play the game just download the zip file, extract it, and run My Project.exe<br>
 Controls:<br>
-	* wasd to move
-	* space to jump
+	* wasd to move<br>
+	* space to jump<br>
 Development Progress:<br>
     * Movement<br>
     * Room generation<br>
