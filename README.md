@@ -6,6 +6,7 @@ To play the game just download the zip file, extract it, and run My Project.exe<
 Controls:<br>
 	* wasd to move<br>
 	* space to jump<br>
+	* escape to unlock the mouse and go back to the menu<br>
 Development Progress:<br>
     * Movement<br>
     * Room generation<br>
