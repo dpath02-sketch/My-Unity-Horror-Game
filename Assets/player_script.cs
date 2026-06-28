@@ -13,6 +13,7 @@ public class player_script : MonoBehaviour
     public Camera cam;
     public float camera_sensitivity = 5.3F;
     public Image Vignette;
+    public AudioSource EwICantMusic;
     private float cam_x = 0;
     private bool Alive = true;
     private float timer = 0;
@@ -65,6 +66,10 @@ public class player_script : MonoBehaviour
         if (timer >= 2)
         {
             SceneManager.LoadScene("MainMenu");
+        }
+        if (EwICantMusic.isPlaying == false)
+        {
+            EwICantMusic.Play();
         }
     }
     bool IsGrounded()
