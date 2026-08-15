@@ -22,6 +22,7 @@ public class room_spawner : MonoBehaviour
     {
 
     }
+
     [ContextMenu("Spawn room")]
     public void spawn_room()
     {
@@ -65,6 +66,7 @@ public class room_spawner : MonoBehaviour
             Destroy(spawned_rooms[0]);
         }
     }
+
     private void OnTriggerEnter(Collider other)
     {
         if(other.gameObject.tag == "is_player")

@@ -7,7 +7,6 @@ using UnityEngine.SceneManagement;
 
 public class UIBehaviourScript : MonoBehaviour
 {
-    public Image Vignette;
     public Image Exit;
     public TextMeshProUGUI ExitText;
     public Button ExitButton;
@@ -15,7 +14,6 @@ public class UIBehaviourScript : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        Vignette.color = new Color(0, 0, 0, 0);
         Exit.color = new Color(0, 0, 0, 0);
         ExitText.color = new Color(0, 0, 0, 0);
         ExitButton.interactable = false;
@@ -50,11 +48,6 @@ public class UIBehaviourScript : MonoBehaviour
             }
         }
         
-    }
-
-    public void Death()
-    {
-        Vignette.color = new Color(1, 0.5F, 0.5F, 1);
     }
     public void Quit()
     {
