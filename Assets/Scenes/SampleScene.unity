@@ -1019,10 +1019,54 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: eec5a711870958648a81a61fe5445d27, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Vignette: {fileID: 832810184}
   Exit: {fileID: 1676823834}
   ExitText: {fileID: 1797846879}
   ExitButton: {fileID: 1676823833}
+--- !u!1 &1006866803
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1006866805}
+  - component: {fileID: 1006866804}
+  m_Layer: 0
+  m_Name: ConfigManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1006866804
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1006866803}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 844a1bae0dfcaa8478534a7b149090a2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  fileName: configs.json
+--- !u!4 &1006866805
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1006866803}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -6.6000004, y: 2.4500003, z: 6.6000004}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1042848599
 GameObject:
   m_ObjectHideFlags: 0
@@ -1374,3 +1418,4 @@ SceneRoots:
   - {fileID: 211743727}
   - {fileID: 981517876}
   - {fileID: 600390930}
+  - {fileID: 1006866805}

@@ -6,12 +6,13 @@ using UnityEditor;
 using UnityEngine.UI;
 using System.Runtime.CompilerServices;
 using UnityEngine.SceneManagement;
+using System.Xml.Serialization;
 
-public class player_script : MonoBehaviour
+public class player_script : MonoBehaviour, IConfigs
 {
     public Rigidbody who;
     public Camera cam;
-    public float camera_sensitivity = 5.3F;
+    public float camera_sensitivity = 53;
     public Image Vignette;
     public AudioSource EwICantMusic;
     private float cam_x = 0;
@@ -49,8 +50,8 @@ public class player_script : MonoBehaviour
             {
                 who.transform.Translate(new Vector3(0, 0, -4 * Time.deltaTime), Space.Self);
             }
-            who.transform.Rotate(new Vector3(0, 1, 0), UnityEngine.Input.GetAxis("Mouse X") * camera_sensitivity);
-            cam_x -= UnityEngine.Input.GetAxis("Mouse Y") * camera_sensitivity;
+            who.transform.Rotate(new Vector3(0, 1, 0), UnityEngine.Input.GetAxis("Mouse X") * camera_sensitivity / 10);
+            cam_x -= UnityEngine.Input.GetAxis("Mouse Y") * camera_sensitivity / 10;
             cam_x = Math.Clamp(cam_x, -90, 90);
             cam.transform.localEulerAngles = new Vector3(cam_x, 90, 0);
         }
@@ -80,5 +81,16 @@ public class player_script : MonoBehaviour
     public void Death()
     {
         Alive = false;
+    }
+
+    //Configs boi
+    public void LoadConfigs(Configs configs)
+    {
+        this.camera_sensitivity = configs.turnRateConfig;
+    }
+
+    public void SaveConfigs(ref Configs configs)
+    {
+        configs.turnRateConfig = this.camera_sensitivity;
     }
 }
