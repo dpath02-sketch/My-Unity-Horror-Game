@@ -26,8 +26,7 @@ public class room_spawner : MonoBehaviour
     [ContextMenu("Spawn room")]
     public void spawn_room()
     {
-        //TODO make room3(damaged) and 4(dark)
-        //TODO room 3 needs an image or smthn
+        //TODO room frequencies without just having the same entry multiple times + might have to start thinking about where the game goes from here
         GameObject room = null;
         if (room_number <= 2)
         {

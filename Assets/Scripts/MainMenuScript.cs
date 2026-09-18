@@ -11,6 +11,8 @@ public class MainMenuScript : MonoBehaviour, IConfigs
     public string StartScene = "SampleScene";
     public Slider sensitivitySlider;
     public TextMeshProUGUI sensitivityText;
+    public Slider fovSlider;
+    public TextMeshProUGUI fovText;
     public List<Image> settingsImages;
     public List<TextMeshProUGUI> settingsTexts;
     public List<Slider> settingsSliders;
@@ -30,14 +32,14 @@ public class MainMenuScript : MonoBehaviour, IConfigs
 
     public void NewGame()
     {
-        //TODO wipe data & configs
+        //TODO wipe data, save configs
         ConfigManager.instance.SaveConfigs();
         SceneManager.LoadScene("SampleScene");
     }
 
     public void LoadGame()
     {
-        //TODO load data & configs
+        //TODO save configs, data should be saved and loaded by other scene. no point loading now.
         ConfigManager.instance.SaveConfigs();
         SceneManager.LoadScene("SampleScene");
     }
@@ -99,15 +101,23 @@ public class MainMenuScript : MonoBehaviour, IConfigs
         //TODO have a config object w. sensitivity to save 4 later
     }
 
+    public void FovUpdate()
+    {
+        fovText.text = fovSlider.value.ToString() + " degrees";
+    }
+
     //gotta get em configs
     public void LoadConfigs(Configs configs)
     {
         sensitivitySlider.value = configs.turnRateConfig;
         SensitivityUpdate();
+        fovSlider.value = configs.fovConfig;
+        FovUpdate();
     }
 
     public void SaveConfigs(ref Configs configs)
     {
         configs.turnRateConfig = sensitivitySlider.value;
+        configs.fovConfig = fovSlider.value;
     }
 }

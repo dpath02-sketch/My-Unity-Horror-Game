@@ -87,10 +87,12 @@ public class player_script : MonoBehaviour, IConfigs
     public void LoadConfigs(Configs configs)
     {
         this.camera_sensitivity = configs.turnRateConfig;
+        this.cam.fieldOfView = configs.fovConfig / this.cam.aspect; //FOV is vertical, div horizontal by width/height or mul by height/width
     }
 
     public void SaveConfigs(ref Configs configs)
     {
         configs.turnRateConfig = this.camera_sensitivity;
+        configs.fovConfig = this.cam.fieldOfView * this.cam.aspect; //FOV is measured vertically so i multiply by width/height
     }
 }
