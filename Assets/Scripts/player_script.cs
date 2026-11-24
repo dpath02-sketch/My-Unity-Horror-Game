@@ -61,7 +61,6 @@ public class player_script : MonoBehaviour, IConfigs
             {
                 energy = 0;
             }
-            Debug.Log(energy);
         }
         else
         {

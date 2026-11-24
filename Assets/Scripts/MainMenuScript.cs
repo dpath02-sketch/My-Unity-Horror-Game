@@ -13,9 +13,11 @@ public class MainMenuScript : MonoBehaviour, IConfigs
     public TextMeshProUGUI sensitivityText;
     public Slider fovSlider;
     public TextMeshProUGUI fovText;
+    public Toggle sprintToggle;
     public List<Image> settingsImages;
     public List<TextMeshProUGUI> settingsTexts;
     public List<Slider> settingsSliders;
+    public List<Toggle> settingsToggles;
     private bool showSettings = true;
     // Start is called before the first frame update
     void Start()
@@ -71,6 +73,10 @@ public class MainMenuScript : MonoBehaviour, IConfigs
             {
                 slider.interactable = true;
             }
+            foreach (Toggle toggle in settingsToggles)
+            {
+                toggle.interactable = true;
+            }
         }
         else
         {
@@ -86,6 +92,10 @@ public class MainMenuScript : MonoBehaviour, IConfigs
             {
                 slider.interactable = false;
             }
+            foreach (Toggle toggle in settingsToggles)
+            {
+                toggle.interactable = false;
+            }
         }
     }
 
@@ -98,7 +108,6 @@ public class MainMenuScript : MonoBehaviour, IConfigs
     public void SensitivityUpdate()
     {
         sensitivityText.text = (sensitivitySlider.value / 10).ToString("0.0") + " degrees/pixel";
-        //TODO have a config object w. sensitivity to save 4 later
     }
 
     public void FovUpdate()
@@ -113,11 +122,13 @@ public class MainMenuScript : MonoBehaviour, IConfigs
         SensitivityUpdate();
         fovSlider.value = configs.fovConfig;
         FovUpdate();
+        sprintToggle.isOn = configs.sprintToggle;
     }
 
     public void SaveConfigs(ref Configs configs)
     {
         configs.turnRateConfig = sensitivitySlider.value;
         configs.fovConfig = fovSlider.value;
+        configs.sprintToggle = sprintToggle.isOn;
     }
 }
