@@ -18,6 +18,9 @@ public class player_script : MonoBehaviour, IConfigs
     private float cam_x = 0;
     private bool Alive = true;
     private float timer = 0;
+    private float walkSpeed = 4;
+    private float runSpeed = 8;
+    private float jumpSpeed = 4;
     // Start is called before the first frame update
     void Start()
     {
@@ -32,23 +35,23 @@ public class player_script : MonoBehaviour, IConfigs
         {
             if (IsGrounded() && UnityEngine.Input.GetKey("space"))
             {
-                who.velocity = new Vector3(0, 4F, 0);
+                who.velocity = new Vector3(0, jumpSpeed, 0);
             }
             if (UnityEngine.Input.GetKey("w"))
             {
-                who.transform.Translate(new Vector3(4 * Time.deltaTime, 0, 0), Space.Self);
+                who.transform.Translate(new Vector3(walkSpeed * Time.deltaTime, 0, 0), Space.Self);
             }
             if (UnityEngine.Input.GetKey("a"))
             {
-                who.transform.Translate(new Vector3(0, 0, 4 * Time.deltaTime), Space.Self);
+                who.transform.Translate(new Vector3(0, 0, walkSpeed * Time.deltaTime), Space.Self);
             }
             if (UnityEngine.Input.GetKey("s"))
             {
-                who.transform.Translate(new Vector3(-4 * Time.deltaTime, 0, 0), Space.Self);
+                who.transform.Translate(new Vector3(-1 * walkSpeed * Time.deltaTime, 0, 0), Space.Self);
             }
             if (UnityEngine.Input.GetKey("d"))
             {
-                who.transform.Translate(new Vector3(0, 0, -4 * Time.deltaTime), Space.Self);
+                who.transform.Translate(new Vector3(0, 0, -1 * walkSpeed * Time.deltaTime), Space.Self);
             }
             who.transform.Rotate(new Vector3(0, 1, 0), UnityEngine.Input.GetAxis("Mouse X") * camera_sensitivity / 10);
             cam_x -= UnityEngine.Input.GetAxis("Mouse Y") * camera_sensitivity / 10;

@@ -42,7 +42,7 @@ public class ConfigManager : MonoBehaviour
         {
             configUser.LoadConfigs(configs);
         }
-        Debug.Log("Loaded config: turn rate = " + configs.turnRateConfig);
+        Debug.Log("Loaded:\n" + configs);
     }
 
     public void SaveConfigs()
@@ -52,7 +52,7 @@ public class ConfigManager : MonoBehaviour
         {
             configUser.SaveConfigs(ref configs);
         }
-        Debug.Log("Saved config: turn rate = " + configs.turnRateConfig);
+        Debug.Log("Saved:\n" + configs);
         //save to file
         configHandler.Save(configs);
     }
