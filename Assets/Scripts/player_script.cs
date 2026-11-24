@@ -7,6 +7,7 @@ using UnityEngine.UI;
 using System.Runtime.CompilerServices;
 using UnityEngine.SceneManagement;
 using System.Xml.Serialization;
+using UnityEngine.InputSystem;
 
 public class player_script : MonoBehaviour, IConfigs
 {
@@ -25,6 +26,7 @@ public class player_script : MonoBehaviour, IConfigs
     private float energy = 4;
     private float walkCost = 1;
     private float runCost = 2;
+    private bool sprintToggle = true;
 
     // Start is called before the first frame update
     void Start()
@@ -38,7 +40,28 @@ public class player_script : MonoBehaviour, IConfigs
     {
         if (Alive)
         {
-            Movement(walkSpeed);
+            float speed = new float(); // Yes I just made a new float cry about it
+            RunEngine(ref speed);
+            Movement(speed);
+            if (running)
+            {
+                energy -= Time.deltaTime * runCost;
+            }
+            else if (InputSystem.actions.FindAction("Move").IsPressed())
+            {
+                energy -= Time.deltaTime * walkCost;
+                
+            }
+            energy += Time.deltaTime;
+            if (energy > 4)
+            {
+                energy = 4;
+            }
+            else if (energy < 0)
+            {
+                energy = 0;
+            }
+            Debug.Log(energy);
         }
         else
         {
@@ -61,23 +84,23 @@ public class player_script : MonoBehaviour, IConfigs
 
     private void Movement(float speed)
     {
-        if (IsGrounded() && UnityEngine.Input.GetKey("space"))
+        if (IsGrounded() && Input.GetKey(KeyCode.Space))
         {
             who.velocity = new Vector3(0, jumpSpeed, 0);
         }
-        if (UnityEngine.Input.GetKey("w"))
+        if (Input.GetKey(KeyCode.W))
         {
             who.transform.Translate(new Vector3(speed * Time.deltaTime, 0, 0), Space.Self);
         }
-        if (UnityEngine.Input.GetKey("a"))
+        if (Input.GetKey(KeyCode.A))
         {
             who.transform.Translate(new Vector3(0, 0, speed * Time.deltaTime), Space.Self);
         }
-        if (UnityEngine.Input.GetKey("s"))
+        if (Input.GetKey(KeyCode.S))
         {
             who.transform.Translate(new Vector3(-1 * speed * Time.deltaTime, 0, 0), Space.Self);
         }
-        if (UnityEngine.Input.GetKey("d"))
+        if (Input.GetKey(KeyCode.D))
         {
             who.transform.Translate(new Vector3(0, 0, -1 * speed * Time.deltaTime), Space.Self);
         }
@@ -86,6 +109,50 @@ public class player_script : MonoBehaviour, IConfigs
         cam_x = Math.Clamp(cam_x, -90, 90);
         cam.transform.localEulerAngles = new Vector3(cam_x, 90, 0);
     }
+
+    private void RunEngine(ref float speed)
+    {
+        // Can you run (move key down, has energy)? Also means letting go of move key aids in toggle sprint :)
+        if (InputSystem.actions.FindAction("Move").ReadValue<Vector2>().magnitude > 0 && (energy > 2 || (running && energy > 0)))
+        {
+            if (sprintToggle) //TODO toggle sprint toggle
+            {
+                if (InputSystem.actions.FindAction("Sprint").IsPressed() || running)
+                {
+                    running = true;
+                }
+                else
+                {
+                    running = false;
+                }
+            }
+            else
+            {
+                if (InputSystem.actions.FindAction("Sprint").IsPressed())
+                {
+                    running = true;
+                }
+                else
+                {
+                    running = false;
+                }
+            }
+        }
+        else
+        {
+            running = false;
+        }
+        // If running -> speed
+        if (running)
+        {
+            speed = runSpeed;
+        }
+        else
+        {
+            speed = walkSpeed;
+        }
+    }
+
     bool IsGrounded()
     {
         return Physics.Raycast(transform.position, new Vector3(0, -1, 0), 1.1F);
@@ -101,6 +168,7 @@ public class player_script : MonoBehaviour, IConfigs
     {
         this.camera_sensitivity = configs.turnRateConfig;
         this.cam.fieldOfView = configs.fovConfig / this.cam.aspect; //FOV is vertical, div horizontal by width/height or mul by height/width
+        this.sprintToggle = configs.sprintToggle;
     }
 
     public void SaveConfigs(ref Configs configs)
