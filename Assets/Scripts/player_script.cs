@@ -21,6 +21,11 @@ public class player_script : MonoBehaviour, IConfigs
     private float walkSpeed = 4;
     private float runSpeed = 8;
     private float jumpSpeed = 4;
+    private bool running = false;
+    private float energy = 4;
+    private float walkCost = 1;
+    private float runCost = 2;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -33,30 +38,7 @@ public class player_script : MonoBehaviour, IConfigs
     {
         if (Alive)
         {
-            if (IsGrounded() && UnityEngine.Input.GetKey("space"))
-            {
-                who.velocity = new Vector3(0, jumpSpeed, 0);
-            }
-            if (UnityEngine.Input.GetKey("w"))
-            {
-                who.transform.Translate(new Vector3(walkSpeed * Time.deltaTime, 0, 0), Space.Self);
-            }
-            if (UnityEngine.Input.GetKey("a"))
-            {
-                who.transform.Translate(new Vector3(0, 0, walkSpeed * Time.deltaTime), Space.Self);
-            }
-            if (UnityEngine.Input.GetKey("s"))
-            {
-                who.transform.Translate(new Vector3(-1 * walkSpeed * Time.deltaTime, 0, 0), Space.Self);
-            }
-            if (UnityEngine.Input.GetKey("d"))
-            {
-                who.transform.Translate(new Vector3(0, 0, -1 * walkSpeed * Time.deltaTime), Space.Self);
-            }
-            who.transform.Rotate(new Vector3(0, 1, 0), UnityEngine.Input.GetAxis("Mouse X") * camera_sensitivity / 10);
-            cam_x -= UnityEngine.Input.GetAxis("Mouse Y") * camera_sensitivity / 10;
-            cam_x = Math.Clamp(cam_x, -90, 90);
-            cam.transform.localEulerAngles = new Vector3(cam_x, 90, 0);
+            Movement(walkSpeed);
         }
         else
         {
@@ -67,7 +49,7 @@ public class player_script : MonoBehaviour, IConfigs
             }
             Vignette.color = new Color(1, 0.5F, 0.5F, timer * 0.5F);
         }
-        if (timer >= 2)
+        if (timer == 2)
         {
             SceneManager.LoadScene("MainMenu");
         }
@@ -75,6 +57,34 @@ public class player_script : MonoBehaviour, IConfigs
         {
             EwICantMusic.Play();
         }
+    }
+
+    private void Movement(float speed)
+    {
+        if (IsGrounded() && UnityEngine.Input.GetKey("space"))
+        {
+            who.velocity = new Vector3(0, jumpSpeed, 0);
+        }
+        if (UnityEngine.Input.GetKey("w"))
+        {
+            who.transform.Translate(new Vector3(speed * Time.deltaTime, 0, 0), Space.Self);
+        }
+        if (UnityEngine.Input.GetKey("a"))
+        {
+            who.transform.Translate(new Vector3(0, 0, speed * Time.deltaTime), Space.Self);
+        }
+        if (UnityEngine.Input.GetKey("s"))
+        {
+            who.transform.Translate(new Vector3(-1 * speed * Time.deltaTime, 0, 0), Space.Self);
+        }
+        if (UnityEngine.Input.GetKey("d"))
+        {
+            who.transform.Translate(new Vector3(0, 0, -1 * speed * Time.deltaTime), Space.Self);
+        }
+        who.transform.Rotate(new Vector3(0, 1, 0), UnityEngine.Input.GetAxis("Mouse X") * camera_sensitivity / 10);
+        cam_x -= UnityEngine.Input.GetAxis("Mouse Y") * camera_sensitivity / 10;
+        cam_x = Math.Clamp(cam_x, -90, 90);
+        cam.transform.localEulerAngles = new Vector3(cam_x, 90, 0);
     }
     bool IsGrounded()
     {
