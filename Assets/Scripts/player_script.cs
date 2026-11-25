@@ -89,8 +89,8 @@ public class player_script : MonoBehaviour, IConfigs
         }
         who.transform.Translate(new Vector3(InputSystem.actions.FindAction("Move").ReadValue<Vector2>().y * speed * Time.deltaTime, 0, 0), Space.Self);
         who.transform.Translate(new Vector3(0, 0, InputSystem.actions.FindAction("Move").ReadValue<Vector2>().x * speed * -1 * Time.deltaTime), Space.Self);
-        who.transform.Rotate(new Vector3(0, 1, 0), UnityEngine.Input.GetAxis("Mouse X") * camera_sensitivity / 10);
-        cam_x -= InputSystem.actions.FindAction("Look").ReadValue<Vector2>().y * camera_sensitivity / 10;
+        who.transform.Rotate(new Vector3(0, 1, 0), InputSystem.actions.FindAction("Look").ReadValue<Vector2>().x * 0.1F * camera_sensitivity / 10);
+        cam_x -= InputSystem.actions.FindAction("Look").ReadValue<Vector2>().y * 0.1F * camera_sensitivity / 10;
         cam_x = Math.Clamp(cam_x, -90, 90);
         cam.transform.localEulerAngles = new Vector3(cam_x, 90, 0);
     }

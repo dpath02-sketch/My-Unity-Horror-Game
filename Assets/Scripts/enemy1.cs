@@ -13,7 +13,7 @@ public class enemy1 : MonoBehaviour
     private Rigidbody KnightGetAsgored;
     private float StompCooldown = 2;
     [SerializeField]
-    private float wait = 2;
+    private float wait = 4;
     public string DeathScene = "MainMenu";
     public AudioSource Stomp;
     // Start is called before the first frame update
