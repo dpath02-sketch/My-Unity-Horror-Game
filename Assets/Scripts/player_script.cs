@@ -25,7 +25,7 @@ public class player_script : MonoBehaviour, IConfigs
     private float jumpSpeed = 4;
     private bool running = false;
     private float energy = 4;
-    private float walkCost = 0;
+    private float walkCost = 0.5F;
     private float runCost = 2F;
     private bool sprintToggle = true;
 
