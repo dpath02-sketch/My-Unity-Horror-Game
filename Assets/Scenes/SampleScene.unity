@@ -1179,6 +1179,7 @@ MonoBehaviour:
   - {fileID: 2402660689940969429, guid: 6965ee226ee8b244e81fd519991911b1, type: 3}
   - {fileID: 3197007474649383412, guid: 548a38da82fb1b74ab8ad906d8733f53, type: 3}
   - {fileID: 5982367809594639903, guid: 49e9c79159df2804b89d6aa68af5f688, type: 3}
+  - {fileID: 2402660689940969429, guid: 9960250b0800eed47931291c089d55d5, type: 3}
   enemies:
   - {fileID: 9087024287453743824, guid: 685f3a5af53fa7a4a85a05908ff55f2f, type: 3}
   room_number: 0
