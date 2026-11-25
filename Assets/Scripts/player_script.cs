@@ -23,9 +23,9 @@ public class player_script : MonoBehaviour, IConfigs
     private float runSpeed = 8;
     private float jumpSpeed = 4;
     private bool running = false;
-    private float energy = 4;
+    private float energy = 2;
     private float walkCost = 1;
-    private float runCost = 2;
+    private float runCost = 1.5F;
     private bool sprintToggle = true;
 
     // Start is called before the first frame update
