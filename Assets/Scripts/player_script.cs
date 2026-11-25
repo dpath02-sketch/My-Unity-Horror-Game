@@ -83,28 +83,14 @@ public class player_script : MonoBehaviour, IConfigs
 
     private void Movement(float speed)
     {
-        if (IsGrounded() && Input.GetKey(KeyCode.Space))
+        if (IsGrounded() && InputSystem.actions.FindAction("Jump").IsPressed())
         {
             who.velocity = new Vector3(0, jumpSpeed, 0);
         }
-        if (Input.GetKey(KeyCode.W))
-        {
-            who.transform.Translate(new Vector3(speed * Time.deltaTime, 0, 0), Space.Self);
-        }
-        if (Input.GetKey(KeyCode.A))
-        {
-            who.transform.Translate(new Vector3(0, 0, speed * Time.deltaTime), Space.Self);
-        }
-        if (Input.GetKey(KeyCode.S))
-        {
-            who.transform.Translate(new Vector3(-1 * speed * Time.deltaTime, 0, 0), Space.Self);
-        }
-        if (Input.GetKey(KeyCode.D))
-        {
-            who.transform.Translate(new Vector3(0, 0, -1 * speed * Time.deltaTime), Space.Self);
-        }
+        who.transform.Translate(new Vector3(InputSystem.actions.FindAction("Move").ReadValue<Vector2>().y * speed * Time.deltaTime, 0, 0), Space.Self);
+        who.transform.Translate(new Vector3(0, 0, InputSystem.actions.FindAction("Move").ReadValue<Vector2>().x * speed * -1 * Time.deltaTime), Space.Self);
         who.transform.Rotate(new Vector3(0, 1, 0), UnityEngine.Input.GetAxis("Mouse X") * camera_sensitivity / 10);
-        cam_x -= UnityEngine.Input.GetAxis("Mouse Y") * camera_sensitivity / 10;
+        cam_x -= InputSystem.actions.FindAction("Look").ReadValue<Vector2>().y * camera_sensitivity / 10;
         cam_x = Math.Clamp(cam_x, -90, 90);
         cam.transform.localEulerAngles = new Vector3(cam_x, 90, 0);
     }
