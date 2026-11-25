@@ -16,6 +16,7 @@ public class player_script : MonoBehaviour, IConfigs
     public float camera_sensitivity = 53;
     public Image Vignette;
     public AudioSource EwICantMusic;
+    public Slider energyBar;
     private float cam_x = 0;
     private bool Alive = true;
     private float timer = 0;
@@ -61,6 +62,7 @@ public class player_script : MonoBehaviour, IConfigs
             {
                 energy = 0;
             }
+            energyBar.value = energy / 2;
         }
         else
         {
