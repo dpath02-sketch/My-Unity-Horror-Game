@@ -61,7 +61,6 @@ public class player_script : MonoBehaviour, IConfigs
             {
                 energy = 0;
             }
-            Debug.Log(energy);
         }
         else
         {
@@ -117,13 +116,16 @@ public class player_script : MonoBehaviour, IConfigs
         {
             if (sprintToggle) //TODO toggle sprint toggle
             {
-                if (InputSystem.actions.FindAction("Sprint").IsPressed() || running)
+                if (InputSystem.actions.FindAction("Sprint").WasPressedThisFrame())
                 {
-                    running = true;
-                }
-                else
-                {
-                    running = false;
+                    if (running)
+                    {
+                        running = false;
+                    }
+                    else
+                    {
+                        running  = true;
+                    }
                 }
             }
             else

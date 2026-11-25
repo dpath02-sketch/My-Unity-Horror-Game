@@ -57,7 +57,6 @@ public class enemy1 : MonoBehaviour
     {
         if (other.gameObject.tag == "is_player")
         {
-            //TODO death. therefor main menu, death screen, etc
             //TODO also actualy model. with the idea of ramming try a 4 legged creature with eyes on the front
             KnightGetAsgored.constraints = RigidbodyConstraints.None;
             KnightGetAsgored.AddForceAtPosition(new Vector3(MathF.Cos(MathF.PI * transform.rotation.y / 180) * 10, 0, MathF.Sin(MathF.PI * transform.rotation.y / 180) * 10), transform.position);
