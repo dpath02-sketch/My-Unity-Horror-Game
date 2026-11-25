@@ -53,14 +53,15 @@ public class player_script : MonoBehaviour, IConfigs
                 
             }
             energy += Time.deltaTime;
-            if (energy > 4)
+            if (energy > 2)
             {
-                energy = 4;
+                energy = 2;
             }
             else if (energy < 0)
             {
                 energy = 0;
             }
+            Debug.Log(energy);
         }
         else
         {
