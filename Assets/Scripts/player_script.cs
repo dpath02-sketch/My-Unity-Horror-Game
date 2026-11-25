@@ -113,7 +113,7 @@ public class player_script : MonoBehaviour, IConfigs
     private void RunEngine(ref float speed)
     {
         // Can you run (move key down, has energy)? Also means letting go of move key aids in toggle sprint :)
-        if (InputSystem.actions.FindAction("Move").ReadValue<Vector2>().magnitude > 0 && (energy > 2 || (running && energy > 0)))
+        if (InputSystem.actions.FindAction("Move").ReadValue<Vector2>().magnitude > 0 && (energy > 1 || (running && energy > 0)))
         {
             if (sprintToggle) //TODO toggle sprint toggle
             {

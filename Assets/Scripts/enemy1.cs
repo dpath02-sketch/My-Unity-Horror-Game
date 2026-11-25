@@ -12,7 +12,8 @@ public class enemy1 : MonoBehaviour
     private int rotations = 0;
     private Rigidbody KnightGetAsgored;
     private float StompCooldown = 2;
-    [SerializeField] private float wait = 2;
+    [SerializeField]
+    private float wait = 2;
     public string DeathScene = "MainMenu";
     public AudioSource Stomp;
     // Start is called before the first frame update
@@ -31,7 +32,7 @@ public class enemy1 : MonoBehaviour
             {
                 Destroy(gameObject);
             }
-            transform.Translate(new Vector3(Time.deltaTime * 8, 0, 0));
+            transform.Translate(new Vector3(Time.deltaTime * 16, 0, 0));
             if (MathF.Abs(transform.position.x) > 7.2F || MathF.Abs(transform.position.z) > 7.2F)
             {
                 transform.position = new Vector3(transform.position.x / MathF.Abs(transform.position.x) * 7.2F, transform.position.y, transform.position.z / MathF.Abs(transform.position.z) * 7.2F);
