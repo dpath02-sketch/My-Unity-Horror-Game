@@ -24,9 +24,9 @@ public class player_script : MonoBehaviour, IConfigs
     private float runSpeed = 8;
     private float jumpSpeed = 4;
     private bool running = false;
-    private float energy = 4;
+    private float energy = 2;
     private float walkCost = 0.5F;
-    private float runCost = 2F;
+    private float runCost = 1.5F;
     private bool sprintToggle = true;
 
     // Start is called before the first frame update
@@ -54,15 +54,15 @@ public class player_script : MonoBehaviour, IConfigs
                 
             }
             energy += Time.deltaTime;
-            if (energy > 4)
+            if (energy > 2)
             {
-                energy = 4;
+                energy = 2;
             }
             else if (energy < 0)
             {
                 energy = 0;
             }
-            energyBar.value = energy / 4;
+            energyBar.value = energy / 2;
         }
         else
         {
@@ -100,7 +100,7 @@ public class player_script : MonoBehaviour, IConfigs
     private void RunEngine(ref float speed)
     {
         // Can you run (move key down, has energy)? Also means letting go of move key aids in toggle sprint :)
-        if (InputSystem.actions.FindAction("Move").ReadValue<Vector2>().magnitude > 0 && (energy > 2 || (running && energy > 0)))
+        if (InputSystem.actions.FindAction("Move").ReadValue<Vector2>().magnitude > 0 && (energy > 1 || (running && energy > 0)))
         {
             if (sprintToggle) //TODO toggle sprint toggle
             {
