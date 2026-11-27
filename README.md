@@ -19,7 +19,7 @@ Development Progress:
 <img width="480" alt="main image" src="https://github.com/user-attachments/assets/13e6880b-6db9-4f0e-a54a-f7dc335aaccd" /><br>
 Bugs:
 <ul>
-	<li>Sprinting into the corner of a room causes you to clip out of the map</li>
+	<li><s>Sprinting into the corner of a room causes you to clip out of the map</s><br>Switched from pure translate to physics</li>
 </ul>
 Credits:
 <ul>

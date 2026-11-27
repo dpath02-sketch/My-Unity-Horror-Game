@@ -116,8 +116,11 @@ public class player_script : MonoBehaviour, IConfigs
         {
             who.velocity = new Vector3(0, jumpSpeed, 0);
         }
-        who.transform.Translate(new Vector3(InputSystem.actions.FindAction("Move").ReadValue<Vector2>().y * speed * Time.deltaTime, 0, 0), Space.Self);
-        who.transform.Translate(new Vector3(0, 0, InputSystem.actions.FindAction("Move").ReadValue<Vector2>().x * speed * -1 * Time.deltaTime), Space.Self);
+        float y = who.velocity.y;
+        who.velocity = transform.right * InputSystem.actions.FindAction("Move").ReadValue<Vector2>().y * speed + transform.forward * -1 * InputSystem.actions.FindAction("Move").ReadValue<Vector2>().x * speed;
+        who.velocity = new Vector3(who.velocity.x, y, who.velocity.z);
+        //who.transform.Translate(new Vector3(InputSystem.actions.FindAction("Move").ReadValue<Vector2>().y * speed * Time.deltaTime, 0, 0), Space.Self);
+        //who.transform.Translate(new Vector3(0, 0, InputSystem.actions.FindAction("Move").ReadValue<Vector2>().x * speed * -1 * Time.deltaTime), Space.Self);
         who.transform.Rotate(new Vector3(0, 1, 0), InputSystem.actions.FindAction("Look").ReadValue<Vector2>().x * 0.1F * camera_sensitivity / 10);
         cam_x -= InputSystem.actions.FindAction("Look").ReadValue<Vector2>().y * 0.1F * camera_sensitivity / 10;
         cam_x = Math.Clamp(cam_x, -90, 90);
