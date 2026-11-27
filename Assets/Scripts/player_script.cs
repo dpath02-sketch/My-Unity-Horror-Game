@@ -8,6 +8,7 @@ using System.Runtime.CompilerServices;
 using UnityEngine.SceneManagement;
 using System.Xml.Serialization;
 using UnityEngine.InputSystem;
+using System.Linq;
 
 public class player_script : MonoBehaviour, IConfigs
 {
@@ -90,15 +91,22 @@ public class player_script : MonoBehaviour, IConfigs
 
     private void ItemHandler()
     {
+        if (InputSystem.actions.FindAction("Drop").WasPressedThisFrame())
+        {
+            DropItem(ref item);
+        }
         // Do you want to pick it up?
         if (InputSystem.actions.FindAction("Interact").WasPressedThisFrame())
         {
-            RaycastHit hit = new RaycastHit();
-            Physics.Raycast(cam.ScreenPointToRay(Input.mousePosition), out hit);
-            if (hit.collider.tag == "is_item")
+            RaycastHit[] hits = Physics.RaycastAll(cam.ScreenPointToRay(Input.mousePosition), 2);
+            if (hits.Count<RaycastHit>() != 0 && hits[0].collider.tag == "is_item")
             {
-                item = hit.collider.GetComponent<Item>();
-                hit.collider.enabled = false;
+                if (item != null)
+                {
+                    DropItem(ref item);
+                }
+                item = hits[0].collider.GetComponent<Item>();
+                hits[0].collider.enabled = false;
             }
         }
         // If you have an item hold it
@@ -107,6 +115,17 @@ public class player_script : MonoBehaviour, IConfigs
             item.transform.position = hand.position;
             item.transform.rotation = hand.rotation;
             item.transform.localScale = hand.localScale;
+        }
+    }
+
+    private void DropItem(ref Item item)
+    {
+        if (item != null)
+        {
+            item.transform.position = transform.position + transform.right * 2;
+            item.transform.localScale = new Vector3(1, 1, 1);
+            item.GetComponent<Collider>().enabled = true;
+            item = null;
         }
     }
 
