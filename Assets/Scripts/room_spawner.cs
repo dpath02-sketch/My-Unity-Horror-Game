@@ -35,7 +35,7 @@ public class room_spawner : MonoBehaviour
         }
         else if (room_number >= 3)
         {
-            List<int> weights = new() {4, 2, 2, 2, 1};
+            List<int> weights = new() {7, 2, 2, 2, 1};
             room = rNG.WeightedChoice<GameObject>(rooms, weights);//TODO might add prog based gen
         }
         Instantiate(room, new Vector3(0, 0, 0), transform.rotation);
