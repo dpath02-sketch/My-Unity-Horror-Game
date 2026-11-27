@@ -17,6 +17,8 @@ public class player_script : MonoBehaviour, IConfigs
     public Image Vignette;
     public AudioSource EwICantMusic;
     public Slider energyBar;
+    public Transform hand;
+    private Item item;
     private float cam_x = 0;
     private bool Alive = true;
     private float timer = 0;
@@ -44,6 +46,7 @@ public class player_script : MonoBehaviour, IConfigs
             float speed = new float(); // Yes I just made a new float cry about it
             RunEngine(ref speed);
             Movement(speed);
+            // Energy usage
             if (running)
             {
                 energy -= Time.deltaTime * runCost;
@@ -63,6 +66,8 @@ public class player_script : MonoBehaviour, IConfigs
                 energy = 0;
             }
             energyBar.value = energy / 2;
+            // Holding items
+            ItemHandler();
         }
         else
         {
@@ -80,6 +85,28 @@ public class player_script : MonoBehaviour, IConfigs
         if (EwICantMusic.isPlaying == false)
         {
             EwICantMusic.Play();
+        }
+    }
+
+    private void ItemHandler()
+    {
+        // Do you want to pick it up?
+        if (InputSystem.actions.FindAction("Interact").WasPressedThisFrame())
+        {
+            RaycastHit hit = new RaycastHit();
+            Physics.Raycast(cam.ScreenPointToRay(Input.mousePosition), out hit);
+            if (hit.collider.tag == "is_item")
+            {
+                item = hit.collider.GetComponent<Item>();
+                hit.collider.enabled = false;
+            }
+        }
+        // If you have an item hold it
+        if (item != null)
+        {
+            item.transform.position = hand.position;
+            item.transform.rotation = hand.rotation;
+            item.transform.localScale = hand.localScale;
         }
     }
 
