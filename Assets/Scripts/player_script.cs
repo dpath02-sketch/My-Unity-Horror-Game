@@ -122,10 +122,25 @@ public class player_script : MonoBehaviour, IConfigs
     {
         if (item != null)
         {
-            item.transform.position = transform.position + transform.right * 2;
-            item.transform.localScale = new Vector3(1, 1, 1);
-            item.GetComponent<Collider>().enabled = true;
-            item = null;
+            RaycastHit hit = new RaycastHit();
+            Physics.Raycast(transform.position + transform.right * 0.5F, transform.position + transform.right * 2, out hit, 2 - 0.5F);
+            if (hit.collider != null)
+            {
+                if (hit.distance > 0.5) //TODO ok maybe this is gonna take a bit
+                {
+                    item.transform.position = hit.point + hit.normal * 0.5F;
+                    item.transform.localScale = new Vector3(1, 1, 1);
+                    item.GetComponent<Collider>().enabled = true;
+                    item = null;
+                }
+            }
+            else
+            {
+                item.transform.position = transform.position + transform.right * 2;
+                item.transform.localScale = new Vector3(1, 1, 1);
+                item.GetComponent<Collider>().enabled = true;
+                item = null;
+            }
         }
     }
 
