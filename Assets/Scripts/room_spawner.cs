@@ -8,6 +8,7 @@ public class room_spawner : MonoBehaviour
     public List<GameObject> rooms;
     public List<GameObject> enemies;
     public int room_number = 0;
+    RNG rNG = new RNG();
     // Start is called before the first frame update
     void Start()
     {
@@ -34,7 +35,8 @@ public class room_spawner : MonoBehaviour
         }
         else if (room_number >= 3)
         {
-            room = rooms[Random.Range(0, rooms.Count())];//TODO might add prog based gen
+            List<int> weights = new() {4, 2, 2, 2, 1};
+            room = rNG.WeightedChoice<GameObject>(rooms, weights);//TODO might add prog based gen
         }
         Instantiate(room, new Vector3(0, 0, 0), transform.rotation);
         room_number += 1;

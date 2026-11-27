@@ -4,11 +4,11 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
-public class RNG : MonoBehaviour
+public class RNG
 {
     public T WeightedChoice<T>(List<T> choices, List<int> weights)
     {
-        int roll = UnityEngine.Random.Range(0, weights.Sum());
+        int roll = UnityEngine.Random.Range(0, weights.Sum()) + 1;
         int bar = 0;
         for (int i = 0; i < weights.Count; i += 1)
         {
