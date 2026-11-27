@@ -11,9 +11,9 @@ public class enemy1 : MonoBehaviour
 {
     private int rotations = 0;
     private Rigidbody KnightGetAsgored;
-    private float StompCooldown = 2;
+    private float StompCooldown = 0;
     [SerializeField]
-    private float wait = 16;
+    private float wait = 2.47F;
     public string DeathScene = "MainMenu";
     public AudioSource Stomp;
     // Start is called before the first frame update
@@ -44,13 +44,13 @@ public class enemy1 : MonoBehaviour
         {
             wait -= Time.deltaTime;
         }
-        // at least it works but charging at bro would be kool
-        //Stomp Sound. Credits to the Bass drum sound from scratch
+        //TODO At least it works but charging at bro would be kool
+        // Stomp Sound. Credits to the Bass drum sound from scratch
         StompCooldown -= Time.deltaTime;
         if (StompCooldown <= 0)
         {
             Stomp.Play();
-            StompCooldown = 2;
+            StompCooldown = 0.5F;
         }
     }
     private void OnTriggerEnter(Collider other)

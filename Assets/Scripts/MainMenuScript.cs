@@ -34,7 +34,7 @@ public class MainMenuScript : MonoBehaviour, IConfigs
 
     public void NewGame()
     {
-        //TODO wipe data, save configs
+        //TODO Wipe data, save configs
         ConfigManager.instance.SaveConfigs();
         SceneManager.LoadScene("SampleScene");
     }
@@ -58,17 +58,17 @@ public class MainMenuScript : MonoBehaviour, IConfigs
         }
         if (showSettings)
         {
-            //list o. images. includes slider components
+            // List o. images. includes slider components
             foreach (Image image in settingsImages)
             {
                 image.color = new Color(0.9F, 0.9F, 0.675F, 1);
             }
-            //list of texts (menu could have more than 1)
+            // List of texts (menu could have more than 1)
             foreach (TextMeshProUGUI text in settingsTexts)
             {
                 text.color = new Color(0.9F, 0.9F, 0.675F, 1);
             }
-            //slider visuals are covered by the images list. just dissable interactions
+            // Slider visuals are covered by the images list. just dissable interactions
             foreach (Slider slider in settingsSliders)
             {
                 slider.interactable = true;
